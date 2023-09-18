@@ -1,0 +1,911 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index a0565ec..d309720 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,12 +1,9 @@
+ import { Outlet } from "react-router-dom";
+-import Navbar from "./layout/Navbar";
+ import { Flex } from "@chakra-ui/react";
+ 
+ export function App() {
+   return (
+     <Flex flexDirection="column" maxHeight="100vh">
+-      <Navbar />
+-
+       <Flex py={"1.5rem"} flex="1">
+         <Outlet />
+       </Flex>
+diff --git a/src/assets/Quartz.png b/src/assets/Quartz.png
+new file mode 100644
+index 0000000..fff577f
+Binary files /dev/null and b/src/assets/Quartz.png differ
+diff --git a/src/components/Dlinks/ContactDetails.tsx b/src/components/Dlinks/ContactDetails.tsx
+new file mode 100644
+index 0000000..ec3d97a
+--- /dev/null
++++ b/src/components/Dlinks/ContactDetails.tsx
+@@ -0,0 +1,18 @@
++import GenericAccordion from "../Global/GenericAccordian";
++import Identity from "./sections/ContactDetails/Identity";
++import Web3AssetsWallets from "./sections/ContactDetails/Web3AssetsWallets";
++const accordionItems = [
++  {
++    title: "Identity",
++    content: <Identity />,
++  },
++  {
++    title: "Web3 Cryptoasset Wallets",
++    content: <Web3AssetsWallets />,
++  },
++];
++const ContactDetails = () => {
++  return <GenericAccordion items={accordionItems} />;
++};
++
++export default ContactDetails;
+diff --git a/src/components/Dlinks/InterestAndCulture.tsx b/src/components/Dlinks/InterestAndCulture.tsx
+new file mode 100644
+index 0000000..966507a
+--- /dev/null
++++ b/src/components/Dlinks/InterestAndCulture.tsx
+@@ -0,0 +1,33 @@
++import GenericAccordion from "../Global/GenericAccordian";
++import SteamupInterests from "./sections/InterestAndCulture/SteamupInterests";
++import GeneralInterests from "./sections/InterestAndCulture/GeneralInterests";
++import Web6Functions from "./sections/InterestAndCulture/Web6Functions";
++import CounteriesOfInterest from "./sections/InterestAndCulture/CounteriesOfInterest";
++
++const accordionItems = [
++  {
++    title: "STEAM'd uP Interests",
++    description: "Science, Tech, Engieering, the Arts & Maths",
++    content: <SteamupInterests />,
++  },
++  {
++    title: "General Interests",
++    description: "Through four dimensions",
++    content: <GeneralInterests />,
++  },
++  {
++    title: "Web6Functions",
++    description: "Priorities ordered interests",
++    content: <Web6Functions />,
++  },
++  {
++    title: "Countries of Interest",
++    content: <CounteriesOfInterest />,
++  },
++];
++
++const InterestAndCulture = () => {
++  return <GenericAccordion items={accordionItems} />;
++};
++
++export default InterestAndCulture;
+diff --git a/src/components/Dlinks/MoreInsights.tsx b/src/components/Dlinks/MoreInsights.tsx
+new file mode 100644
+index 0000000..b4d9c9a
+--- /dev/null
++++ b/src/components/Dlinks/MoreInsights.tsx
+@@ -0,0 +1,86 @@
++import { Grid, GridItem, Heading, Text, VStack } from "@chakra-ui/react";
++
++const insights = [
++  {
++    title: "Level Being 9 Apiary",
++    description: (
++      <Text>
++        Level Being 9 Apiary is interested in all things to do with the STEM and
++        Art of beekeeping. We are developing a directory and networking forum of
++        beekeeping organisation and practitioners panAfrica. [
++        <a href="https://www.google.com">See My Enchance dLinks Profile</a>]
++      </Text>
++    ),
++  },
++  {
++    title: "Community Science Lab",
++    description: (
++      <Text>
++        uLearn Naturally Community Science Lab seeks to establish community
++        based learning centres focused on STEM, explored in culturally inclusive
++        and engaging ways. Community Science Labs will focus on; a) Communal
++        science lab facilities - made accessible to all, b) Space observatory -
++        telescopes and radio, c) STEM Open Learning Resource rooms, d)
++        Planetarium - VR and immersive projections, e) Lab cafe - light
++        edutainment spaces. [
++        <a href="https://www.google.com">See My Enhance dLinks Profile</a>]
++      </Text>
++    ),
++  },
++  {
++    title: "Creators’ Hubs",
++    description: (
++      <Text>
++        We will be developing a localised learners cooperative hubs around STEM
++        and the first pilot project “DIY Build A Recumbent Trike project”. This
++        project will involve learners in design (CAD), metalworking (frame
++        building), general recumbent trike construction to point of completion,
++        quality testing and naturally, in cycling. The main intention being
++        about engaging children, youth and adults in transferable STEM
++        competency development in the context of environmental awareness and the
++        advancement of healthful (more sustainable) ways of travelling. [
++        <a href="https://www.google.com">See My Enhance dLinks Profile</a>]
++      </Text>
++    ),
++  },
++  {
++    title: "DopA - Directory of panAfrica",
++    description: (
++      <Text>
++        We are developing a directory and networking forum of panAfrican
++        Organisations and Coordinators. [
++        <a href="https://www.google.com">See My Enhance dLinks Profile</a>]
++      </Text>
++    ),
++  },
++];
++
++const MoreInsights = () => {
++  return (
++    <Grid templateColumns={["1fr", "1fr 1fr"]} gap={6}>
++      <GridItem order={[2, 0, 0, 0]}>
++        {insights.map((item, index) => (
++          <VStack key={index} alignItems={"start"} my={10}>
++            <Heading>{item.title}</Heading>
++            {item.description}
++          </VStack>
++        ))}
++      </GridItem>
++
++      <GridItem justifySelf={"end"} w={"100%"}>
++        <iframe
++          id="embed_player"
++          width="100%"
++          height="400px"
++          src="https://ulearn.airtime.pro/embed/player?stream=auto&skin=2"
++        ></iframe>
++
++        <Text fontWeight={"bold"} textAlign={"right"}>
++          Listen to OnWeb3 Radio Now
++        </Text>
++      </GridItem>
++    </Grid>
++  );
++};
++
++export default MoreInsights;
+diff --git a/src/components/Dlinks/ProfileHeader.tsx b/src/components/Dlinks/ProfileHeader.tsx
+new file mode 100644
+index 0000000..2942f1b
+--- /dev/null
++++ b/src/components/Dlinks/ProfileHeader.tsx
+@@ -0,0 +1,63 @@
++import { Button, SimpleGrid, Text, VStack } from "@chakra-ui/react";
++import Dlinks from "@/assets/appsGateway/Icons-16 dlinks.png";
++import GenericTabs from "../Global/GenericTabs";
++import ContactDetails from "./ContactDetails";
++import InterestAndCulture from "./InterestAndCulture";
++import SocialLinks from "./SocialLinks";
++import MoreInsights from "./MoreInsights";
++import FullScreenImage from "../Global/FullScreenImage";
++
++const tabs = [
++  {
++    label: "Contact Details",
++    content: <ContactDetails />,
++  },
++  {
++    label: "Interest & Culture",
++    content: <InterestAndCulture />,
++  },
++  {
++    label: "Social Links",
++    content: <SocialLinks />,
++  },
++  {
++    label: "More Insights",
++    content: <MoreInsights />,
++  },
++];
++
++const ProfileHeader = () => {
++  return (
++    <>
++      <SimpleGrid
++        bg={"white"}
++        columns={[2, 2, 2, 3]}
++        minH={"50vh"}
++        my={10}
++        px={[2, 10, 20]}
++        alignContent={"center"}
++      >
++        <VStack p={[2, 10, 10, 20]} order={[2, 2, 2, 0]}>
++          <FullScreenImage imageUrl={Dlinks} />
++          <Button>Share</Button>
++        </VStack>
++        <VStack p={[0, 10, 10, 20]}>
++          <FullScreenImage imageUrl={Dlinks} />
++          <Text>
++            Passport Ref: <Text as={"b"}>1st gen 400</Text>
++          </Text>
++          <Text>
++            Your OnWeb3 Status is <Text as={"b"}>2:9</Text>
++          </Text>
++        </VStack>
++        <VStack>
++          <FullScreenImage imageUrl={Dlinks} />
++          <Text placeSelf={"end"}>User Name</Text>
++        </VStack>
++      </SimpleGrid>
++      <GenericTabs tabs={tabs} />
++    </>
++  );
++};
++
++export default ProfileHeader;
+diff --git a/src/components/Dlinks/SocialLinks.tsx b/src/components/Dlinks/SocialLinks.tsx
+new file mode 100644
+index 0000000..8de4a39
+--- /dev/null
++++ b/src/components/Dlinks/SocialLinks.tsx
+@@ -0,0 +1,22 @@
++import { Text, VStack } from "@chakra-ui/react";
++
++const SocialLinks = () => {
++  return (
++    <VStack align={"flex-start"}>
++      <VStack align={"flex-start"}>
++        <Text>Biographic Link:</Text>
++        <a href="https://twitter.com/">https://twitter.com/</a>
++      </VStack>
++      <VStack align={"flex-start"}>
++        <Text>Biographic Link:</Text>
++        <a href="https://twitter.com/">https://twitter.com/</a>
++      </VStack>
++      <VStack align={"flex-start"}>
++        <Text>Biographic Link:</Text>
++        <a href="https://twitter.com/">https://twitter.com/</a>
++      </VStack>
++    </VStack>
++  );
++};
++
++export default SocialLinks;
+diff --git a/src/components/Dlinks/sections/ContactDetails/Identity.tsx b/src/components/Dlinks/sections/ContactDetails/Identity.tsx
+new file mode 100644
+index 0000000..c85a3cf
+--- /dev/null
++++ b/src/components/Dlinks/sections/ContactDetails/Identity.tsx
+@@ -0,0 +1,39 @@
++import { Text, VStack } from "@chakra-ui/react";
++const textContent = [
++  {
++    title: "Chat Name:",
++    content: "@astehmari:alkebulanmeta.network",
++    type: "text",
++  },
++  {
++    title: "Display Name:",
++    content: "1st gen 400",
++    type: "text",
++  },
++  {
++    title: "dLinks Profile URL (public link):",
++    content: "https://dlinks.alkebulanmeta.network/1stgen400",
++    type: "link",
++  },
++];
++const Identity = () => {
++  return (
++    <VStack alignItems={"flex-start"}>
++      {textContent.map((item, index) => (
++        <Text key={index}>
++          {item.title}{" "}
++          <Text as="b">
++            {item.type === "link" ? (
++              <a href={item.content} target="_blank">
++                {item.content}
++              </a>
++            ) : (
++              item.content
++            )}
++          </Text>
++        </Text>
++      ))}
++    </VStack>
++  );
++};
++export default Identity;
+diff --git a/src/components/Dlinks/sections/ContactDetails/Web3AssetsWallets.tsx b/src/components/Dlinks/sections/ContactDetails/Web3AssetsWallets.tsx
+new file mode 100644
+index 0000000..0f5aec4
+--- /dev/null
++++ b/src/components/Dlinks/sections/ContactDetails/Web3AssetsWallets.tsx
+@@ -0,0 +1,54 @@
++import { Heading, Image, SimpleGrid, Text, VStack } from "@chakra-ui/react";
++const textContent = [
++  {
++    blockchain: "Solana",
++    address: "n1nuyGWwaNy9Q97qrGH7LseoFGkhuc5Fa8",
++    qrCode:
++      "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAM0AAADNAQAAAAAzx8nEAAABvklEQVR4nO2XsY3DMAxFGaRQ6RG8SbyYARnQYvEmGsGlC8O8/8k458shLVUkKoxETwVB/k9Rou/WKl/08WgRkYtust66gg0Z8V9yPMqqs059usu18lBve+FolDQvY49d1XTvNvxqhRjXzJTdZGyIlqvqzlINSyvEerl2Jor5tZRRiLuIy4rGz4uwg5AvBLeL9HDSP5sHoaKsV9V7V6oMWipU1AJVxDXJKt0mcLXi0JGoQASJuFzZ2VAq6rjTcIRSJWrn4WXwdKg3Ei25Wly0sSQauglCizeeKBvr+OvlkE0swu7Us7e6mHVug7B7Ve8mA4p2TlQg8hkANkaOzEnPlhKJUCVlS5lpJwgI1v61eRhCetBDRkxEZmN8EKaGo4eXe0uUchSBk3I4wvUP15RqEmasPKTxCNEMuPlXlipZ5U69NwxBuLzwvErCD2JtgtJjJrMZ4HwFBCJkBsEVn0dsnWQTh2zRxgPHIl7/8jRRIPIJtbhYfFLcW6DM+8UdjMEMf9sgfztY0aoNJcabIESIYcjmQ7wd/kQYiuBgc/XsAmqAWC+IBcK1x0zmoQboeMvxcenv7We9AtGb9UWfjn4A9P8EP2Cnb7EAAAAASUVORK5CYII=",
++  },
++  {
++    blockchain: "Bitcoin",
++    address: "n1nuyGWwaNy9Q97qrGH7LseoFGkhuc5Fa8",
++    qrCode:
++      "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAM0AAADNAQAAAAAzx8nEAAABvklEQVR4nO2XsY3DMAxFGaRQ6RG8SbyYARnQYvEmGsGlC8O8/8k458shLVUkKoxETwVB/k9Rou/WKl/08WgRkYtust66gg0Z8V9yPMqqs059usu18lBve+FolDQvY49d1XTvNvxqhRjXzJTdZGyIlqvqzlINSyvEerl2Jor5tZRRiLuIy4rGz4uwg5AvBLeL9HDSP5sHoaKsV9V7V6oMWipU1AJVxDXJKt0mcLXi0JGoQASJuFzZ2VAq6rjTcIRSJWrn4WXwdKg3Ei25Wly0sSQauglCizeeKBvr+OvlkE0swu7Us7e6mHVug7B7Ve8mA4p2TlQg8hkANkaOzEnPlhKJUCVlS5lpJwgI1v61eRhCetBDRkxEZmN8EKaGo4eXe0uUchSBk3I4wvUP15RqEmasPKTxCNEMuPlXlipZ5U69NwxBuLzwvErCD2JtgtJjJrMZ4HwFBCJkBsEVn0dsnWQTh2zRxgPHIl7/8jRRIPIJtbhYfFLcW6DM+8UdjMEMf9sgfztY0aoNJcabIESIYcjmQ7wd/kQYiuBgc/XsAmqAWC+IBcK1x0zmoQboeMvxcenv7We9AtGb9UWfjn4A9P8EP2Cnb7EAAAAASUVORK5CYII=",
++  },
++];
++const Web3AssetsWallets = () => {
++  return (
++    <VStack alignItems={"flex-start"}>
++      <Heading>Web3 Cryptoasset Wallets:</Heading>
++      <SimpleGrid
++        columns={[1, 1, 1, 3]}
++        spacingY={10}
++        w={"100%"}
++        alignItems={"center"}
++        fontWeight={"bold"}
++        display={["none", "none", "none", "grid"]}
++      >
++        {" "}
++        <Text>Blockchain:</Text>
++        <Text>Wallet Address:</Text>
++        <Text placeSelf={["center", "center", "center", "end"]}>QR Code:</Text>
++      </SimpleGrid>
++
++      {textContent.map((item, index) => (
++        <SimpleGrid
++          columns={[1, 1, 1, 3]}
++          spacingY={10}
++          key={index}
++          w={"100%"}
++          alignItems={"center"}
++        >
++          <Text>{item.blockchain}</Text>
++          <Text>{item.address}</Text>
++          <Image
++            placeSelf={["center", "center", "center", "end"]}
++            src={item.qrCode}
++          />
++          <hr />
++        </SimpleGrid>
++      ))}
++    </VStack>
++  );
++};
++export default Web3AssetsWallets;
+diff --git a/src/components/Dlinks/sections/InterestAndCulture/CounteriesOfInterest.tsx b/src/components/Dlinks/sections/InterestAndCulture/CounteriesOfInterest.tsx
+new file mode 100644
+index 0000000..99a99b9
+--- /dev/null
++++ b/src/components/Dlinks/sections/InterestAndCulture/CounteriesOfInterest.tsx
+@@ -0,0 +1,36 @@
++import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
++
++const CounteriesOfInterest = () => {
++  return (
++    <Flex
++      flexDir={["column", "row"]}
++      align={"flex-start"}
++      justifyContent={"space-between"}
++    >
++      <VStack align={"flex-start"}>
++        <Heading
++          pb={[0, 0, 10]}
++          pt={[10, 10, 0]}
++          fontSize={["1rem", "1.25rem"]}
++        >
++          African countries of interest:
++        </Heading>
++        <Text>Central African Republic</Text>
++        <Text>Ethiopia</Text>
++        <Text>Burkina Faso</Text>
++      </VStack>
++      <VStack align={"flex-start"}>
++        <Heading
++          pb={[0, 0, 10]}
++          pt={[10, 10, 0]}
++          fontSize={["1rem", "1.25rem"]}
++        >
++          Country of residence:
++        </Heading>
++        <Text>United Kingdom</Text>
++      </VStack>
++    </Flex>
++  );
++};
++
++export default CounteriesOfInterest;
+diff --git a/src/components/Dlinks/sections/InterestAndCulture/GeneralInterests.tsx b/src/components/Dlinks/sections/InterestAndCulture/GeneralInterests.tsx
+new file mode 100644
+index 0000000..8b6e306
+--- /dev/null
++++ b/src/components/Dlinks/sections/InterestAndCulture/GeneralInterests.tsx
+@@ -0,0 +1,53 @@
++import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
++import SliderWithThumb from "../../../Global/Slider";
++
++const GeneralInterests = () => {
++  return (
++    <VStack align={"flex-start"}>
++      <Heading pb={10} fontSize={["1rem", "1.25rem"]}>
++        General Interest:
++        <Text fontSize={["0.75rem", "1rem"]}>Through four dimensions</Text>
++      </Heading>
++      <VStack w={"100%"}>
++        <Flex flexDir={["column", "column", "column", "row"]} w={"100%"}>
++          <Text w="50%" whiteSpace={"nowrap"}>
++            I am a Mother Earth Lover
++            <Text as={"span"} color={"red"}>
++              *
++            </Text>
++          </Text>
++          <SliderWithThumb />
++        </Flex>
++        <Flex flexDir={["column", "column", "column", "row"]} w={"100%"}>
++          <Text w="50%" whiteSpace={"nowrap"}>
++            I am a Web3 Enthusiast
++            <Text as={"span"} color={"red"}>
++              *
++            </Text>
++          </Text>
++          <SliderWithThumb />
++        </Flex>
++        <Flex flexDir={["column", "column", "column", "row"]} w={"100%"}>
++          <Text w="50%" whiteSpace={"nowrap"}>
++            I am a STEM Enthusiast
++            <Text as={"span"} color={"red"}>
++              *
++            </Text>
++          </Text>
++          <SliderWithThumb />
++        </Flex>
++        <Flex flexDir={["column", "column", "column", "row"]} w={"100%"}>
++          <Text w="50%" whiteSpace={"nowrap"}>
++            I am a African identity Enthusiast
++            <Text as={"span"} color={"red"}>
++              *
++            </Text>
++          </Text>
++          <SliderWithThumb />
++        </Flex>
++      </VStack>
++    </VStack>
++  );
++};
++
++export default GeneralInterests;
+diff --git a/src/components/Dlinks/sections/InterestAndCulture/SteamupInterests.tsx b/src/components/Dlinks/sections/InterestAndCulture/SteamupInterests.tsx
+new file mode 100644
+index 0000000..6ebe920
+--- /dev/null
++++ b/src/components/Dlinks/sections/InterestAndCulture/SteamupInterests.tsx
+@@ -0,0 +1,24 @@
++import { Heading, Text, VStack } from "@chakra-ui/react";
++
++const SteamupInterests = () => {
++  return (
++    <VStack align={"flex-start"}>
++      <Heading fontSize={["1rem", "1.25rem"]} pb={10}>
++        STEAM'd uP Interests:
++        <Text fontSize={["0.75rem", "1rem"]}>
++          Science, Tech, Engieering, the Arts & Maths
++        </Text>
++      </Heading>
++      <Text as="b">Astronomy</Text>
++      <Text>- study oof celestial bodies and phenomena</Text>
++      <Text as="b">Enthnochoreology</Text>
++      <Text>- study of dances and its implication in culture</Text>
++      <Text as="b">Mathematics</Text>
++      <Text>- study of magnitude, number, and forms</Text>
++      <Text as="b">Metaphysics</Text>
++      <Text>- study of principles of nature and thoughts</Text>
++    </VStack>
++  );
++};
++
++export default SteamupInterests;
+diff --git a/src/components/Dlinks/sections/InterestAndCulture/Web6Functions.tsx b/src/components/Dlinks/sections/InterestAndCulture/Web6Functions.tsx
+new file mode 100644
+index 0000000..3c7718b
+--- /dev/null
++++ b/src/components/Dlinks/sections/InterestAndCulture/Web6Functions.tsx
+@@ -0,0 +1,42 @@
++import {
++  Box,
++  Flex,
++  Heading,
++  Image,
++  ListItem,
++  Text,
++  UnorderedList,
++  VStack,
++} from "@chakra-ui/react";
++import gem from "@/assets/Quartz.png";
++
++const Web6Functions = () => {
++  return (
++    <VStack align={"flex-start"}>
++      <Heading pb={10} fontSize={["1rem", "1.25rem"]}>
++        STEAM'd uP Interests - In order of interest:
++      </Heading>
++      <UnorderedList fontSize={["1rem", "1.25rem"]}>
++        <ListItem>illuminance cycles (light)</ListItem>
++        <ListItem>the concentrations of mineral deposits</ListItem>
++        <ListItem>microbial life cycles (biosphere markers)</ListItem>
++        <ListItem>
++          the types of soil (by % ratios of sand : clay : slit)
++        </ListItem>
++        <ListItem>moisture cycles (wet-dry)</ListItem>
++        <ListItem>temperature cycles (hot-cold)</ListItem>
++      </UnorderedList>
++      <Flex width={"50%"} justifyContent={"space-between"} align={"center"}>
++        <Box>
++          <Heading py={10} fontSize={["1rem", "1.25rem"]}>
++            Precious Material Choice:
++          </Heading>
++          <Text>Tangerine-Quartz Gem Material</Text>
++        </Box>
++        <Image src={gem} h="120px" w={"120px"} />
++      </Flex>
++    </VStack>
++  );
++};
++
++export default Web6Functions;
+diff --git a/src/components/Global/FullScreenImage.tsx b/src/components/Global/FullScreenImage.tsx
+new file mode 100644
+index 0000000..c95857e
+--- /dev/null
++++ b/src/components/Global/FullScreenImage.tsx
+@@ -0,0 +1,47 @@
++import { useState } from "react";
++import {
++  Box,
++  Image,
++  Modal,
++  ModalOverlay,
++  ModalContent,
++  ModalCloseButton,
++  ModalBody,
++} from "@chakra-ui/react";
++
++const FullScreenImage = ({ imageUrl }: { imageUrl: stirng }) => {
++  const [isModalOpen, setIsModalOpen] = useState(false);
++
++  const openModal = () => {
++    setIsModalOpen(true);
++  };
++
++  const closeModal = () => {
++    setIsModalOpen(false);
++  };
++
++  return (
++    <>
++      <Box onClick={openModal} cursor="pointer">
++        <Image src={imageUrl} alt="Image" maxW="100%" maxH="100%" />
++      </Box>
++
++      <Modal isOpen={isModalOpen} onClose={closeModal} size="5xl">
++        <ModalOverlay />
++        <ModalContent>
++          <ModalCloseButton />
++          <ModalBody>
++            <Image
++              src={imageUrl}
++              alt="Full Screen Image"
++              maxW="100%"
++              maxH="100vh"
++            />
++          </ModalBody>
++        </ModalContent>
++      </Modal>
++    </>
++  );
++};
++
++export default FullScreenImage;
+diff --git a/src/components/Global/GenericAccordian.tsx b/src/components/Global/GenericAccordian.tsx
+new file mode 100644
+index 0000000..c5eca24
+--- /dev/null
++++ b/src/components/Global/GenericAccordian.tsx
+@@ -0,0 +1,74 @@
++import React, { useState } from "react";
++import {
++  Accordion,
++  AccordionButton,
++  AccordionItem,
++  AccordionPanel,
++  Box,
++  Text,
++} from "@chakra-ui/react";
++import { AddIcon, MinusIcon } from "@chakra-ui/icons";
++
++type AccordionItem = {
++  title: string;
++  description?: string;
++  content: React.ReactNode;
++};
++
++type AccordionProps = {
++  items: AccordionItem[];
++};
++
++const GenericAccordion: React.FC<AccordionProps> = ({ items }) => {
++  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
++
++  const toggleItem = (index: number) => {
++    if (selectedIndex === index) {
++      setSelectedIndex(null); // Close the currently open item
++    } else {
++      setSelectedIndex(index); // Open the clicked item
++    }
++  };
++
++  return (
++    <Accordion allowMultiple>
++      {items.map((item, index) => (
++        <AccordionItem key={index} mb={4}>
++          {({ isExpanded }) => (
++            <>
++              <AccordionButton
++                display={"flex"}
++                alignItems={"center"}
++                justifyContent={"space-between"}
++                borderLeft={"4px plum solid"}
++                _hover={{ bg: "textBody", color: "bodyBackground" }}
++                bg={isExpanded ? "textBody" : "bodyBackground"}
++                color={isExpanded ? "bodyBackground" : "textBody"}
++                textAlign={"left"}
++                p={[2, 4, 4, 8]}
++                onClick={() => toggleItem(index)}
++                role="group"
++              >
++                <Box fontSize={["sm", "md", "lg", "2xl"]} fontWeight={"bold"}>
++                  {item.title}
++                </Box>
++                <Text
++                  fontSize={["xs", "sm", "md", "2xl"]}
++                  _groupHover={{ color: "bodyBackground" }}
++                >
++                  {item.description}
++                </Text>
++                {isExpanded ? <MinusIcon /> : <AddIcon />}
++              </AccordionButton>
++              <AccordionPanel borderTopWidth={1} py={10}>
++                {item.content}
++              </AccordionPanel>
++            </>
++          )}
++        </AccordionItem>
++      ))}
++    </Accordion>
++  );
++};
++
++export default GenericAccordion;
+diff --git a/src/components/Global/GenericTabs.tsx b/src/components/Global/GenericTabs.tsx
+new file mode 100644
+index 0000000..6512496
+--- /dev/null
++++ b/src/components/Global/GenericTabs.tsx
+@@ -0,0 +1,60 @@
++import React, { useState } from "react";
++import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
++
++type TabItem = {
++  label: string;
++  content: React.ReactNode;
++};
++
++type GenericTabsProps = {
++  tabs: TabItem[];
++};
++
++const GenericTabs: React.FC<GenericTabsProps> = ({ tabs }) => {
++  const [selectedTab, setSelectedTab] = useState<number>(0);
++
++  const handleTabChange = (index: number) => {
++    setSelectedTab(index);
++  };
++
++  return (
++    <Tabs
++      isFitted
++      minH={"50vh"}
++      size="md"
++      variant={"unstyled"}
++      index={selectedTab}
++      layerStyle={"base"}
++      onChange={handleTabChange}
++    >
++      <TabList gap={4} flexDir={["column", "column", "row"]}>
++        {tabs.map((tab, index) => (
++          <Tab
++            py={2}
++            px={4}
++            key={index}
++            fontSize={"xl"}
++            layerStyle={"tab"}
++            _selected={{
++              bg: "textBody",
++              color: "white",
++              borderBottom: "4px plum solid",
++              fontWeight: "bold",
++            }}
++          >
++            {tab.label}
++          </Tab>
++        ))}
++      </TabList>
++      <TabPanels mt={10}>
++        {tabs.map((tab, index) => (
++          <TabPanel key={index}>
++            <Box p={[0, 2, 2, 4]}>{tab.content}</Box>
++          </TabPanel>
++        ))}
++      </TabPanels>
++    </Tabs>
++  );
++};
++
++export default GenericTabs;
+diff --git a/src/components/Global/Slider.tsx b/src/components/Global/Slider.tsx
+new file mode 100644
+index 0000000..f5ff018
+--- /dev/null
++++ b/src/components/Global/Slider.tsx
+@@ -0,0 +1,44 @@
++import {
++  Slider,
++  SliderFilledTrack,
++  SliderMark,
++  SliderThumb,
++  SliderTrack,
++  Tooltip,
++} from "@chakra-ui/react";
++import { useState } from "react";
++
++function SliderWithThumb() {
++  const [sliderValue, setSliderValue] = useState(50);
++  const [showTooltip, setShowTooltip] = useState(false);
++  return (
++    <Slider
++      id="slider"
++      defaultValue={50}
++      min={0}
++      max={100}
++      isDisabled={true}
++      onChange={(v) => setSliderValue(v)}
++      onMouseEnter={() => setShowTooltip(true)}
++      onMouseLeave={() => setShowTooltip(false)}
++    >
++      <SliderMark value={50} mt="1" ml="-2.5" fontSize="sm">
++        50
++      </SliderMark>
++
++      <SliderTrack>
++        <SliderFilledTrack bg={"textBody"} />
++      </SliderTrack>
++      <Tooltip
++        hasArrow
++        color="white"
++        placement="top"
++        isOpen={showTooltip}
++        label={`${sliderValue}%`}
++      >
++        <SliderThumb />
++      </Tooltip>
++    </Slider>
++  );
++}
++export default SliderWithThumb;
+diff --git a/src/layout/Navbar.tsx b/src/layout/Navbar.tsx
+index ecdc3af..7ab38c0 100644
+--- a/src/layout/Navbar.tsx
++++ b/src/layout/Navbar.tsx
+@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
+ import HeaderLogo from "../assets/HeaderLogo.png";
+ 
+ interface NavbarProps {
+-  resetAllSelections: () => void;
++  resetAllSelections?: () => void;
+ }
+ function Navbar({ resetAllSelections }: NavbarProps) {
+   const { isOpen, onOpen, onClose } = useDisclosure();
+diff --git a/src/main.tsx b/src/main.tsx
+index a9556fd..8d0bf92 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -5,6 +5,7 @@ import theme from "./utils/chakra.theme";
+ import "./main.css";
+ import { BrowserRouter, Route, Routes } from "react-router-dom";
+ import Login from "./views/Login";
++import DLinks from "./views/DLinks";
+ 
+ const rootElement = document.getElementById("root") as Element;
+ ReactDOM.createRoot(rootElement).render(
+@@ -14,6 +15,7 @@ ReactDOM.createRoot(rootElement).render(
+         <Routes>
+           <Route path="/" element={<Login />} />
+           <Route path="/login" element={<Login />} />
++          <Route path="/dLinks" element={<DLinks />} />
+         </Routes>
+       </BrowserRouter>
+     </ChakraProvider>
+diff --git a/src/utils/chakra.theme.ts b/src/utils/chakra.theme.ts
+index 95f6f27..dea2b09 100644
+--- a/src/utils/chakra.theme.ts
++++ b/src/utils/chakra.theme.ts
+@@ -46,6 +46,9 @@ const theme = extendTheme({
+     hyperlink: {
+       color: "red",
+     },
++    tab: {
++      boxShadow: "1rem 1rem 2rem rgba(174, 174, 192, 0.4)",
++    },
+   },
+ 
+   styles: {
+diff --git a/src/views/DLinks.tsx b/src/views/DLinks.tsx
+new file mode 100644
+index 0000000..5e49818
+--- /dev/null
++++ b/src/views/DLinks.tsx
+@@ -0,0 +1,12 @@
++import ProfileHeader from "../components/Dlinks/ProfileHeader";
++import Navbar from "../layout/Navbar";
++
++const DLinks = () => {
++  return (
++    <>
++      <Navbar />
++      <ProfileHeader />
++    </>
++  );
++};
++export default DLinks;
+diff --git a/src/views/Login.tsx b/src/views/Login.tsx
+index 41e6306..f68f2bd 100644
+--- a/src/views/Login.tsx
++++ b/src/views/Login.tsx
+@@ -29,11 +29,11 @@ import {
+ import LoginLogo from "@/assets/loginIcon.png";
+ import Navbar from "../layout/Navbar";
+ import Carousel from "../components/Login/Carousel";
++import { useNavigate } from "react-router-dom";
+ 
+ const options = ["OnWeb3-Passport", "Temporary-Passcode", "No Passport"];
+ // const options = ["OnWeb3-Passport", "No Passport", "Temporary-Passcode"];
+ 
+-
+ // const settings = {
+ //   apiKey: "BGwPIJelIpcE-ssfDVYL8Y3d9AR2_9GO", // Replace with your Alchemy API Key.
+ //   network: Network.ETH_MAINNET, // Replace with your network.
+@@ -57,6 +57,7 @@ const Login = () => {
+     return Math.floor(Math.random() * images.length);
+   });
+ 
++  const navigate = useNavigate();
+   const handleOptionChange = (value: string) => {
+     setSelectedOption(value);
+   };
+@@ -99,7 +100,13 @@ const Login = () => {
+               </Text>
+             </>
+           ) : (
+-            <Box position="relative" width="100%">
++            <Box
++              position="relative"
++              width="100%"
++              onClick={() => {
++                navigate("/dLinks");
++              }}
++            >
+               <Carousel
+                 images={images}
+                 currentIndex={currentIndex}
