@@ -35,8 +35,9 @@ const GenericTabs: React.FC<GenericTabsProps> = ({ tabs }) => {
             key={index}
             fontSize={"xl"}
             layerStyle={"tab"}
+            bg={"accentLightGreen"}
             _selected={{
-              bg: "textBody",
+              bg: "accentGreen",
               color: "white",
               borderBottom: "4px plum solid",
               fontWeight: "bold",

@@ -21,36 +21,24 @@ const GeneralInterests = () => {
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a Mother Earth Lover
-            <Text as={"span"} color={"red"}>
-              *
-            </Text>
           </Text>
           <SliderWithThumb />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a Web3 Enthusiast
-            <Text as={"span"} color={"red"}>
-              *
-            </Text>
           </Text>
           <SliderWithThumb />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a STEM Enthusiast
-            <Text as={"span"} color={"red"}>
-              *
-            </Text>
           </Text>
           <SliderWithThumb />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
-            I am a African identity Enthusiast
-            <Text as={"span"} color={"red"}>
-              *
-            </Text>
+            I am a African Identity Enthusiast
           </Text>
           <SliderWithThumb />
         </Flex>

@@ -6,11 +6,11 @@ const SteamupInterests = () => {
       <Heading fontSize={["1rem", "1.25rem"]} pb={10}>
         STEAM'd uP Interests:
         <Text fontSize={["0.75rem", "1rem"]}>
-          Science, Tech, Engieering, the Arts & Maths
+          Science, Tech, Engineering, the Arts & Maths
         </Text>
       </Heading>
       <Text as="b">Astronomy</Text>
-      <Text>- study oof celestial bodies and phenomena</Text>
+      <Text>- study of celestial bodies and phenomena</Text>
       <Text as="b">Enthnochoreology</Text>
       <Text>- study of dances and its implication in culture</Text>
       <Text as="b">Mathematics</Text>

@@ -19,11 +19,12 @@ const Web3AssetsWallets = () => {
       <Heading>Web3 Cryptoasset Wallets:</Heading>
       <SimpleGrid
         columns={[1, 1, 1, 3]}
-        spacingY={10}
+        spacingY={[10]}
         w={"100%"}
         alignItems={"center"}
         fontWeight={"bold"}
         display={["none", "none", "none", "grid"]}
+        mb={4}
       >
         {" "}
         <Text>Blockchain:</Text>
@@ -34,7 +35,7 @@ const Web3AssetsWallets = () => {
       {textContent.map((item, index) => (
         <SimpleGrid
           columns={[1, 1, 1, 3]}
-          spacingY={10}
+          spacingY={[5, 5, 10]}
           key={index}
           w={"100%"}
           alignItems={"center"}

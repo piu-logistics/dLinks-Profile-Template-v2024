@@ -20,8 +20,8 @@ const Identity = () => {
   return (
     <VStack alignItems={"flex-start"}>
       {textContent.map((item, index) => (
-        <Text key={index}>
-          {item.title}{" "}
+        <>
+          <Text key={index}>{item.title} </Text>
           <Text as="b">
             {item.type === "link" ? (
               <a href={item.content} target="_blank">
@@ -31,7 +31,7 @@ const Identity = () => {
               item.content
             )}
           </Text>
-        </Text>
+        </>
       ))}
     </VStack>
   );

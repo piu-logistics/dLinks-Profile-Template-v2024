@@ -49,11 +49,17 @@ const GenericAccordion: React.FC<AccordionProps> = ({ items }) => {
                 onClick={() => toggleItem(index)}
                 role="group"
               >
-                <Box fontSize={["sm", "md", "lg", "2xl"]} fontWeight={"bold"}>
+                <Box
+                  flex={1}
+                  fontSize={["sm", "md", "lg", "2xl"]}
+                  fontWeight={"bold"}
+                >
                   {item.title}
                 </Box>
                 <Text
+                  flex={1}
                   fontSize={["xs", "sm", "md", "2xl"]}
+                  color={isExpanded ? "bodyBackground" : "textBody"}
                   _groupHover={{ color: "bodyBackground" }}
                 >
                   {item.description}
