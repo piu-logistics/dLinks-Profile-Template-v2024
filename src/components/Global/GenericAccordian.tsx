@@ -55,15 +55,17 @@ const GenericAccordion: React.FC<AccordionProps> = ({ items }) => {
                   fontWeight={"bold"}
                 >
                   {item.title}
+                  <Text
+                    flex={1}
+                    fontSize={["xs", "sm", "md"]}
+                    color={isExpanded ? "bodyBackground" : "textBody"}
+                    _groupHover={{ color: "bodyBackground" }}
+                    fontWeight={"normal"}
+                  >
+                    {item.description}
+                  </Text>
                 </Box>
-                <Text
-                  flex={1}
-                  fontSize={["xs", "sm", "md", "2xl"]}
-                  color={isExpanded ? "bodyBackground" : "textBody"}
-                  _groupHover={{ color: "bodyBackground" }}
-                >
-                  {item.description}
-                </Text>
+
                 {isExpanded ? <MinusIcon /> : <AddIcon />}
               </AccordionButton>
               <AccordionPanel borderTopWidth={1} py={10}>

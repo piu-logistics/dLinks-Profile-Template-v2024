@@ -7,9 +7,18 @@ import {
   ModalContent,
   ModalCloseButton,
   ModalBody,
+  BoxProps,
 } from "@chakra-ui/react";
-
-const FullScreenImage = ({ imageUrl }: { imageUrl: string }) => {
+interface FullScreenImageProps {
+  imageUrl: string;
+  imageStyles?: any;
+  containerStyles?: BoxProps;
+}
+const FullScreenImage = ({
+  imageUrl,
+  imageStyles,
+  containerStyles,
+}: FullScreenImageProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -22,8 +31,14 @@ const FullScreenImage = ({ imageUrl }: { imageUrl: string }) => {
 
   return (
     <>
-      <Box onClick={openModal} cursor="pointer" border={"2px solid grey"}>
-        <Image src={imageUrl} alt="Image" maxW="100%" maxH="100%" />
+      <Box onClick={openModal} cursor="pointer" {...containerStyles}>
+        <Image
+          src={imageUrl}
+          {...imageStyles}
+          alt="Image"
+          maxW="100%"
+          maxH="100%"
+        />
       </Box>
 
       <Modal isOpen={isModalOpen} onClose={closeModal} size="5xl">
@@ -36,6 +51,7 @@ const FullScreenImage = ({ imageUrl }: { imageUrl: string }) => {
               alt="Full Screen Image"
               maxW="100%"
               maxH="100vh"
+              mx={"auto"}
             />
           </ModalBody>
         </ModalContent>

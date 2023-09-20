@@ -2,17 +2,17 @@ import { Text, VStack } from "@chakra-ui/react";
 const textContent = [
   {
     title: "Chat Name:",
-    content: "@astehmari:alkebulanmeta.network",
+    content: "@alemakuchi:alkebulanmeta.network",
     type: "text",
   },
   {
     title: "Display Name:",
-    content: "1st gen 400",
+    content: "1st Gen 30",
     type: "text",
   },
   {
     title: "dLinks Profile URL (public link):",
-    content: "https://dlinks.alkebulanmeta.network/1stgen400",
+    content: "https://alemakuchi.techbio.ow3.info",
     type: "link",
   },
 ];

@@ -41,18 +41,20 @@ const SocialLinks = () => {
   return (
     <VStack align={"flex-start"}>
       {links.map((link, index) => (
-        <HStack key={index} spacing={4}>
-          <Image
-            h={[10, 10, 20]}
-            w={[10, 10, 20]}
-            src={link.image}
-            alt={link.label}
-          />
-          <VStack align={"flex-start"}>
-            <Text>{link.label}</Text>
-            <a href={link.content}>{link.content}</a>
-          </VStack>
-        </HStack>
+        <a href={link.content} key={index}>
+          <HStack key={index} spacing={4}>
+            <Image
+              h={[10, 10, 20]}
+              w={[10, 10, 20]}
+              src={link.image}
+              alt={link.label}
+            />
+            <VStack align={"flex-start"}>
+              <Text>{link.label}</Text>
+              <a href={link.content}>{link.content}</a>
+            </VStack>
+          </HStack>
+        </a>
       ))}
     </VStack>
   );
