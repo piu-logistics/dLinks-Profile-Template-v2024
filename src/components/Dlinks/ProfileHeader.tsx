@@ -1,20 +1,20 @@
 import {
   AspectRatio,
   Box,
-  Button,
   Grid,
   GridItem,
-  HStack,
   Icon,
+  Image,
+  SimpleGrid,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 import Dlinks from "@/assets/appsGateway/dLinksWhite.png";
 import FullScreenImage from "../Global/FullScreenImage";
 import user from "@/assets/user.png";
 import passport from "@/assets/passport.jpg";
 import animation from "@/assets/animation.mp4";
-import { FaPlus, FaShareAlt } from "react-icons/fa";
+import BrightnessIcon from "@/assets/BrightnessIcon.png";
+import { FaShareAlt } from "react-icons/fa";
 import { useState } from "react";
 
 interface ProfileHeaderProps {
@@ -30,7 +30,7 @@ const ProfileHeaderSmall = ({
     <Box
       display={["block", "block", "block", "none"]}
       position={"relative"}
-      maxH={["90vh", "65vh"]}
+      maxH={["90%", "65%"]}
       overflow={"hidden"}
       mb={"10"}
     >
@@ -58,19 +58,19 @@ const ProfileHeaderSmall = ({
         opacity={opacity}
         bg={"black"}
       />
-      <Icon
-        as={FaPlus}
+      <Image
+        src={BrightnessIcon}
+        alt="Brightness Icon"
         onClick={increaseOpacityByStep}
-        fill={"white"}
         cursor={"pointer"}
         borderRadius={"md"}
         h={6}
         w={6}
         shadow={"md"}
         mt={2}
-        _hover={{ bg: "white", fill: "black" }}
         ml={2}
       />
+
       <Grid
         templateColumns={["1fr"]}
         pt={[2, 4, 10]}
@@ -90,43 +90,32 @@ const ProfileHeaderSmall = ({
             imageUrl={Dlinks}
           />
 
-          <Button
-            maxW={"fit-content"}
-            mt={2}
-            fontSize={"xs"}
-            px={2}
-            h={"auto"}
-            py={1}
-            leftIcon={<Icon as={FaShareAlt} />}
-          >
-            Share
-          </Button>
+          <Icon as={FaShareAlt} fill={"white"} h={4} w={4} mt={2} />
         </GridItem>
-        <GridItem display={"flex"} flexDirection={"column"} mb={2}>
-          <HStack mb={2} placeItems={"start"}>
+        <GridItem display={"flex"}>
+          <SimpleGrid columns={2} spacingX={2}>
             <FullScreenImage
-              containerStyles={{ border: "2px solid white", flex: 1 }}
+              containerStyles={{ border: "2px solid white" }}
               imageUrl={passport}
             />
             <FullScreenImage
               imageUrl={user}
               containerStyles={{ border: "2px solid white", flex: 1 }}
+              imageStyles={{ h: "full", w: "full", objectFit: "cover" }}
             />
-          </HStack>
-          <Text color={"white"}>
-            Passport Ref:{" "}
-            <Text as={"b"} color={"white"}>
-              1st Gen 30
-            </Text>
+          </SimpleGrid>
+        </GridItem>
+        <GridItem display={"grid"} gridTemplateColumns={"1fr 1fr"} my={4}>
+          <Text color={"white"}>Citizen:</Text>
+          <Text color={"white"}>AlemAkuchi</Text>
+          <Text color={"white"}>Passport Ref: </Text>
+          <Text as={"b"} color={"white"}>
+            1st Gen 30
           </Text>
-          <Text color={"white"}>
-            Your OnWeb3 Status is{" "}
-            <Text color={"white"} as={"b"}>
-              2:9
-            </Text>
+          <Text color={"white"}>OnWeb3 Status: </Text>
+          <Text color={"white"} as={"b"}>
+            2:9
           </Text>
-
-          <Text color={"white"}> Citizen: AlemAkuchi</Text>
         </GridItem>
       </Grid>
     </Box>
@@ -168,10 +157,10 @@ const ProfileHeaderLarge = ({
         opacity={opacity}
         bg={"black"}
       />
-      <Icon
-        as={FaPlus}
+      <Image
+        src={BrightnessIcon}
+        alt="Brightness Icon"
         onClick={increaseOpacityByStep}
-        fill={"white"}
         cursor={"pointer"}
         borderRadius={"md"}
         h={6}
@@ -179,11 +168,9 @@ const ProfileHeaderLarge = ({
         shadow={"md"}
         mt={2}
         ml={2}
-        _hover={{ bg: "white", fill: "black" }}
       />
       <Grid
         templateColumns={["1fr 1fr 1fr"]}
-        pt={[2, 4, 10]}
         px={[2, 10, 20]}
         zIndex={2}
         pb={4}
@@ -197,44 +184,39 @@ const ProfileHeaderLarge = ({
           alignItems={"center"}
         >
           <FullScreenImage imageUrl={Dlinks} />
-          <Button
-            maxW={"fit-content"}
-            mt={2}
-            px={2}
-            leftIcon={<Icon as={FaShareAlt} />}
-          >
-            Share
-          </Button>
+
+          <Icon as={FaShareAlt} fill={"white"} h={8} w={8} />
         </GridItem>
         <GridItem display={"flex"} flexDirection={"column"} px={[0, 5, 5, 10]}>
           <FullScreenImage
             containerStyles={{
-              maxH: "70%",
+              mb: 5,
+              maxH: "60%",
             }}
             imageUrl={passport}
             imageStyles={{ objectFit: "cover", border: "2px solid white" }}
           />
-          <Text color={"white"}>
-            Passport Ref:{" "}
+          <SimpleGrid columns={2}>
+            <Text color={"white"}>Citizen:</Text>
+            <Text color={"white"}>AlemAkuchi</Text>
+            <Text color={"white"}>Passport Ref: </Text>
             <Text as={"b"} color={"white"}>
               1st Gen 30
             </Text>
-          </Text>
-          <Text color={"white"}>
-            Your OnWeb3 Status is{" "}
+            <Text color={"white"}>OnWeb3 Status: </Text>
             <Text color={"white"} as={"b"}>
               2:9
             </Text>
-          </Text>
+          </SimpleGrid>
         </GridItem>
         <GridItem display={"flex"} flexDirection={"column"}>
           <FullScreenImage
             imageUrl={user}
-            containerStyles={{ border: "2px solid white" }}
+            containerStyles={{
+              maxH: "60%",
+            }}
+            imageStyles={{ objectFit: "cover", border: "2px solid white" }}
           />
-          <Text placeSelf={"end"} color={"white"}>
-            Citizen: AlemAkuchi
-          </Text>
         </GridItem>
       </Grid>
     </Box>
