@@ -198,7 +198,7 @@ const ProfileHeaderLarge = ({
           />
           <SimpleGrid columns={2}>
             <Text color={"white"}>Citizen:</Text>
-            <Text color={"white"}>AlemAkuchi</Text>
+            <Text as={"b"} color={"white"}>AlemAkuchi</Text>
             <Text color={"white"}>Passport Ref: </Text>
             <Text as={"b"} color={"white"}>
               1st Gen 30
