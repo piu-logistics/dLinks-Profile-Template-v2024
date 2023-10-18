@@ -1,5 +1,7 @@
 import { BoxProps, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import SliderWithThumb from "../../../Global/Slider";
+import { useContext } from "react";
+import { profileContext } from "../../../../context/ProfileContext";
 const sliderItemStyles: BoxProps = {
   flexDir: ["column", "column", "column", "row"],
   w: "100%",
@@ -7,6 +9,14 @@ const sliderItemStyles: BoxProps = {
 };
 
 const GeneralInterests = () => {
+  const { profile } = useContext(profileContext);
+  const {
+    baseCharacterIAmMotherEarthLover,
+    baseCharacteriAmEnvironmentalScienceEnthusiasts,
+    baseCharacteriAmPowerOfBlackIdentityEnthusiasts,
+    baseCharacteriAmWeb3Enthusiasts,
+  } = profile;
+
   return (
     <VStack align={"flex-start"}>
       <Heading
@@ -22,25 +32,29 @@ const GeneralInterests = () => {
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a Mother Earth Lover
           </Text>
-          <SliderWithThumb />
+          <SliderWithThumb value={baseCharacterIAmMotherEarthLover} />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a Web3 Enthusiast
           </Text>
-          <SliderWithThumb />
+          <SliderWithThumb value={baseCharacteriAmWeb3Enthusiasts} />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a STEM Enthusiast
           </Text>
-          <SliderWithThumb />
+          <SliderWithThumb
+            value={baseCharacteriAmEnvironmentalScienceEnthusiasts}
+          />
         </Flex>
         <Flex {...sliderItemStyles}>
           <Text w="50%" whiteSpace={"nowrap"}>
             I am a African Identity Enthusiast
           </Text>
-          <SliderWithThumb />
+          <SliderWithThumb
+            value={baseCharacteriAmPowerOfBlackIdentityEnthusiasts}
+          />
         </Flex>
       </VStack>
     </VStack>

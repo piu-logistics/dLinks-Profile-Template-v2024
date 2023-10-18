@@ -14,10 +14,12 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "crypto-js": "^4.1.1",
     "framer-motion": "^10.16.1",
     "keycloak-js": "^22.0.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
@@ -25,6 +27,7 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

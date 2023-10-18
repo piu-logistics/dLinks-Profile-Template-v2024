@@ -8,13 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function SliderWithThumb() {
-  const [sliderValue, setSliderValue] = useState(50);
+function SliderWithThumb({ value }: { value: number }) {
+  if (!value) return;
+  const [sliderValue, setSliderValue] = useState(value);
   const [showTooltip, setShowTooltip] = useState(false);
   return (
     <Slider
       id="slider"
-      defaultValue={50}
+      defaultValue={value}
       min={0}
       max={100}
       isDisabled={true}
@@ -23,7 +24,7 @@ function SliderWithThumb() {
       onMouseLeave={() => setShowTooltip(false)}
     >
       <SliderMark value={50} mt={[1, 2, 3]} ml="-2" fontSize="sm">
-        50
+        {value}
       </SliderMark>
 
       <SliderTrack>

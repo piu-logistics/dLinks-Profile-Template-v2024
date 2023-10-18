@@ -15,16 +15,19 @@ import passport from "@/assets/passport.jpg";
 import animation from "@/assets/animation.mp4";
 import BrightnessIcon from "@/assets/BrightnessIcon.png";
 import { FaShareAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Profile, profileContext } from "../../context/ProfileContext";
 
 interface ProfileHeaderProps {
   opacity: number;
   increaseOpacityByStep: () => void;
+  profile: Profile;
 }
 
 const ProfileHeaderSmall = ({
   increaseOpacityByStep,
   opacity,
+  profile,
 }: ProfileHeaderProps) => {
   return (
     <Box
@@ -107,14 +110,14 @@ const ProfileHeaderSmall = ({
         </GridItem>
         <GridItem display={"grid"} gridTemplateColumns={"1fr 1fr"} my={4}>
           <Text color={"white"}>Citizen:</Text>
-          <Text color={"white"}>AlemAkuchi</Text>
+          <Text color={"white"}>{profile?.assignedUserName}</Text>
           <Text color={"white"}>Passport Ref: </Text>
           <Text as={"b"} color={"white"}>
-            1st Gen 30
+            {profile?.activeOnWeb3PassportnftNumber}
           </Text>
           <Text color={"white"}>OnWeb3 Status: </Text>
           <Text color={"white"} as={"b"}>
-            2:9
+            {profile?.statusOnWeb3}
           </Text>
         </GridItem>
       </Grid>
@@ -124,6 +127,7 @@ const ProfileHeaderSmall = ({
 const ProfileHeaderLarge = ({
   opacity,
   increaseOpacityByStep,
+  profile,
 }: ProfileHeaderProps) => {
   return (
     <Box
@@ -198,14 +202,14 @@ const ProfileHeaderLarge = ({
           />
           <SimpleGrid columns={2}>
             <Text color={"white"}>Citizen:</Text>
-            <Text color={"white"}>AlemAkuchi</Text>
+            <Text color={"white"}>{profile?.assignedUserName}</Text>
             <Text color={"white"}>Passport Ref: </Text>
             <Text as={"b"} color={"white"}>
-              1st Gen 30
+              {profile?.activeOnWeb3PassportnftNumber}
             </Text>
             <Text color={"white"}>OnWeb3 Status: </Text>
             <Text color={"white"} as={"b"}>
-              2:9
+              {profile?.statusOnWeb3}
             </Text>
           </SimpleGrid>
         </GridItem>
@@ -225,6 +229,7 @@ const ProfileHeaderLarge = ({
 
 const ProfileHeader = () => {
   const [opacity, setOpacity] = useState(1);
+  const { profile } = useContext(profileContext);
 
   const increaseOpacityByStep = () => {
     //increase opacity by step of 0.1 with mod
@@ -242,10 +247,12 @@ const ProfileHeader = () => {
       <ProfileHeaderSmall
         increaseOpacityByStep={increaseOpacityByStep}
         opacity={opacity}
+        profile={profile}
       />
       <ProfileHeaderLarge
         increaseOpacityByStep={increaseOpacityByStep}
         opacity={opacity}
+        profile={profile}
       />
     </>
   );

@@ -1,6 +1,10 @@
 import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { useContext } from "react";
+import { profileContext } from "../../../../context/ProfileContext";
 
 const CounteriesOfInterest = () => {
+  const { profile } = useContext(profileContext);
+  const { threeAfricanCountries, registeredCountryOfResidence } = profile;
   return (
     <Flex
       flexDir={["column", "row"]}
@@ -15,9 +19,9 @@ const CounteriesOfInterest = () => {
         >
           African countries of interest:
         </Heading>
-        <Text>Central African Republic</Text>
-        <Text>Ethiopia</Text>
-        <Text>Burkina Faso</Text>
+        {threeAfricanCountries.map((country: string) => (
+          <Text key={country}>{country}</Text>
+        ))}
       </VStack>
       <VStack align={"flex-start"}>
         <Heading
@@ -27,7 +31,7 @@ const CounteriesOfInterest = () => {
         >
           Country of residence:
         </Heading>
-        <Text>United Kingdom</Text>
+        <Text>{registeredCountryOfResidence}</Text>
       </VStack>
     </Flex>
   );

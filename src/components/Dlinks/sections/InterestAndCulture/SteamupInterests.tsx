@@ -1,6 +1,11 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
+import { profileContext } from "../../../../context/ProfileContext";
+import { useContext } from "react";
 
 const SteamupInterests = () => {
+  const { profile } = useContext(profileContext);
+  const interests = profile?.interestsInSTEAM;
+  const interestsArray = interests.map((interest) => interest.split("-"));
   return (
     <VStack align={"flex-start"}>
       <Heading fontSize={["1rem", "1.25rem"]} pb={10}>
@@ -9,14 +14,12 @@ const SteamupInterests = () => {
           Science, Tech, Engineering, the Arts & Maths
         </Text>
       </Heading>
-      <Text as="b">Astronomy</Text>
-      <Text>- study of celestial bodies and phenomena</Text>
-      <Text as="b">Enthnochoreology</Text>
-      <Text>- study of dances and its implication in culture</Text>
-      <Text as="b">Mathematics</Text>
-      <Text>- study of magnitude, number, and forms</Text>
-      <Text as="b">Metaphysics</Text>
-      <Text>- study of principles of nature and thoughts</Text>
+      {interestsArray?.map((interest) => (
+        <>
+          <Text as={"b"}>{interest[0]}</Text>
+          <Text>{interest[1]}</Text>
+        </>
+      ))}
     </VStack>
   );
 };

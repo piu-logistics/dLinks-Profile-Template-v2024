@@ -1,22 +1,30 @@
 import { Text, VStack } from "@chakra-ui/react";
-const textContent = [
-  {
-    title: "Chat Name:",
-    content: "@alemakuchi:alkebulanmeta.network",
-    type: "text",
-  },
-  {
-    title: "Display Name:",
-    content: "1st Gen 30",
-    type: "text",
-  },
-  {
-    title: "dLinks Profile URL (public link):",
-    content: "https://alemakuchi.techbio.ow3.info",
-    type: "link",
-  },
-];
+import { useContext } from "react";
+import { profileContext } from "../../../../context/ProfileContext";
+
 const Identity = () => {
+  const { profile } = useContext(profileContext);
+  const { registeredDisplayName, preferredUsername, hTLDPreference } = profile;
+  const chatName = `@${preferredUsername}:alkebulanmeta.network`;
+  const dLinksProfileURL = `https://${preferredUsername}.${hTLDPreference}.ow3.info`;
+
+  const textContent = [
+    {
+      title: "Chat Name:",
+      type: "text",
+      content: chatName,
+    },
+    {
+      title: "Display Name:",
+      type: "text",
+      content: registeredDisplayName,
+    },
+    {
+      title: "dLinks Profile URL (public link):",
+      type: "link",
+      content: dLinksProfileURL,
+    },
+  ];
   return (
     <VStack alignItems={"flex-start"}>
       {textContent.map((item, index) => (
@@ -24,7 +32,7 @@ const Identity = () => {
           <Text key={index}>{item.title} </Text>
           <Text as="b">
             {item.type === "link" ? (
-              <a href={item.content} target="_blank">
+              <a href={item.content as string} target="_blank">
                 {item.content}
               </a>
             ) : (
