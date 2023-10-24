@@ -28,18 +28,19 @@ const tabs = [
 ];
 const DLinks = () => {
   const { setProfile } = useContext(profileContext);
+  const url = new URL(window.location.href);
+  const subdomain = url.hostname.split(".")[0];
+
   async function makeAuthenticatedRequest() {
     const response = await fetch(
-      "https://dlink.onweb3.net/api/v1/BasicDLinksProfile",
+      `http://apinode1.alkebulanmeta.network:3000/?username=${subdomain}`,
       {
         method: "GET",
-        headers: {
-          Authorization: `Basic ${btoa("dlink_api_user" + ":" + "NpQetTVw30")}`,
-        },
       }
     );
     const profile = await response.json();
-    setProfile(profile.list[0]);
+
+    setProfile(profile);
   }
 
   useEffect(() => {
