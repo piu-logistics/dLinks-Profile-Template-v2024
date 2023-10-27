@@ -33,7 +33,6 @@ const Web3AssetsWallets = () => {
       qrCode: <QRCode value={cosmosCryptoassetPublicID as string} />,
     },
   ];
-  console.log(textContent);
   return (
     <VStack alignItems={"flex-start"}>
       <Heading>Web3 Cryptoasset Wallets:</Heading>

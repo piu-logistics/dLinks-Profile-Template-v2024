@@ -233,7 +233,6 @@ const ProfileHeader = () => {
 
   const increaseOpacityByStep = () => {
     //increase opacity by step of 0.1 with mod
-    console.log(opacity);
     if (opacity < 1) {
       setOpacity(opacity + 0.1);
     }
