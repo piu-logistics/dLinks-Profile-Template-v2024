@@ -2,24 +2,21 @@
 
 To install and set up this project, follow these steps:
 
-## Clone the repository:
+## Clone the repository and build the app:
 
 git clone <repository-url>
 Navigate to the project directory:
 
-cd login-journey
-Install project dependencies:
+cd dLinks-Profile-Template
 
-npm install
+$ npm install
 
-## Usage
+You may then run "npm run build" command to build the app.
 
-After installation, you can use the following npm scripts:
+$ npm run build
 
-npm run dev: Start the development server using Vite.
-npm run build: Build the project for production using Vite.
-npm run lint: Run ESLint to check and lint TypeScript and JSX files.
-npm run preview: Preview the build locally.
-Feel free to customize the scripts or add more based on your project's requirements.
+By default, the build output will be placed at "dist". 
+
+You may deploy this dist folder to any of your preferred platforms.
 
 #
