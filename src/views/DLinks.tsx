@@ -33,7 +33,7 @@ const DLinks = () => {
 
   async function makeAuthenticatedRequest() {
     const response = await fetch(
-      `http://apinode1.alkebulanmeta.network:3000/?username=${subdomain}`,
+      `https://apinode1.alkebulanmeta.network:3000/?username=${subdomain}`,
       {
         method: "GET",
       }
