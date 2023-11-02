@@ -49,7 +49,6 @@ const DLinks = () => {
   return (
     <>
       <Navbar />
-      <Button onClick={makeAuthenticatedRequest}>Make Request</Button>
       <ProfileHeader />
       <GenericTabs tabs={tabs} />
     </>

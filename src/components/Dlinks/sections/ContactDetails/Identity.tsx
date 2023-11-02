@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import { useContext } from "react";
 import { profileContext } from "../../../../context/ProfileContext";
 
@@ -28,7 +28,7 @@ const Identity = () => {
   return (
     <VStack alignItems={"flex-start"}>
       {textContent.map((item, index) => (
-        <>
+        <Box mb={6}>
           <Text key={index}>{item.title} </Text>
           <Text as="b">
             {item.type === "link" ? (
@@ -39,7 +39,7 @@ const Identity = () => {
               item.content
             )}
           </Text>
-        </>
+        </Box>
       ))}
     </VStack>
   );

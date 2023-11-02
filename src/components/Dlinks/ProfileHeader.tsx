@@ -5,19 +5,33 @@ import {
   GridItem,
   Icon,
   Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
 import Dlinks from "@/assets/appsGateway/dLinksWhite.png";
 import FullScreenImage from "../Global/FullScreenImage";
 import user from "@/assets/user.png";
-import passport from "@/assets/passport.jpg";
+import passport from "@/assets/passport.png";
 import animation from "@/assets/animation.mp4";
 import BrightnessIcon from "@/assets/BrightnessIcon.png";
 import { FaShareAlt } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { Profile, profileContext } from "../../context/ProfileContext";
-
+import {
+  RedditShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  RedditIcon,
+} from "react-share";
 interface ProfileHeaderProps {
   opacity: number;
   increaseOpacityByStep: () => void;
@@ -29,6 +43,8 @@ const ProfileHeaderSmall = ({
   opacity,
   profile,
 }: ProfileHeaderProps) => {
+  const shareUrl = new URL(window.location.href);
+  const [share, setShare] = useState(false);
   return (
     <Box
       display={["block", "block", "block", "none"]}
@@ -37,6 +53,35 @@ const ProfileHeaderSmall = ({
       overflow={"hidden"}
       mb={"10"}
     >
+      <Modal isOpen={share} onClose={() => setShare(!share)} size="5xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton onClick={() => setShare(!share)} />
+          <ModalBody>
+            <SimpleGrid
+              columns={4}
+              gap={2}
+              w="full"
+              justifyItems={"space-between"}
+            >
+              <FacebookShareButton url={shareUrl.toString()}>
+                <FacebookIcon size={32} round={true} />
+              </FacebookShareButton>
+
+              <TwitterShareButton url={shareUrl.toString()}>
+                <TwitterIcon size={32} round={true} />
+              </TwitterShareButton>
+              <WhatsappShareButton url={shareUrl.toString()}>
+                <WhatsappIcon size={32} round={true} />
+              </WhatsappShareButton>
+              <RedditShareButton url={shareUrl.toString()}>
+                <RedditIcon size={32} round={true} />
+              </RedditShareButton>
+            </SimpleGrid>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
       <AspectRatio
         position={"absolute"}
         top={0}
@@ -88,21 +133,36 @@ const ProfileHeaderSmall = ({
           placeSelf={"self-end"}
           mb={4}
         >
-          <FullScreenImage
-            imageStyles={{ h: "20", w: "20" }}
-            imageUrl={Dlinks}
+          <Image
+            src={Dlinks}
+            alt="Image"
+            maxW="100%"
+            maxH="100%"
+            h="20"
+            w="20"
           />
 
-          <Icon as={FaShareAlt} fill={"white"} h={4} w={4} mt={2} />
+          <Icon
+            as={FaShareAlt}
+            fill={"white"}
+            h={4}
+            w={4}
+            mt={2}
+            onClick={() => setShare(!share)}
+          />
         </GridItem>
         <GridItem display={"flex"}>
           <SimpleGrid columns={2} spacingX={2}>
             <FullScreenImage
               containerStyles={{ border: "2px solid white" }}
-              imageUrl={passport}
+              imageUrl={
+                profile?.activeOnWeb3PassportofficialNFTImageUrl?.length! > 0
+                  ? (profile?.activeOnWeb3PassportofficialNFTImageUrl as string)
+                  : (passport as string)
+              }
             />
             <FullScreenImage
-              imageUrl={user}
+              imageUrl={profile?.uploadedProfileImage ?? user}
               containerStyles={{ border: "2px solid white", flex: 1 }}
               imageStyles={{ h: "full", w: "full", objectFit: "cover" }}
             />
@@ -110,8 +170,8 @@ const ProfileHeaderSmall = ({
         </GridItem>
         <GridItem display={"grid"} gridTemplateColumns={"1fr 1fr"} my={4}>
           <Text color={"white"}>Citizen:</Text>
-          <Text color={"white"}>{profile?.assignedUserName}</Text>
-          <Text color={"white"}>Passport Ref: </Text>
+          <Text color={"white"}>{profile?.registeredDisplayName}</Text>
+          Passport Ref:{profile?.activeOnWeb3PassportnftNumber}{" "}
           <Text as={"b"} color={"white"}>
             {profile?.activeOnWeb3PassportnftNumber}
           </Text>
@@ -129,6 +189,9 @@ const ProfileHeaderLarge = ({
   increaseOpacityByStep,
   profile,
 }: ProfileHeaderProps) => {
+  const shareUrl = new URL(window.location.href);
+  const [share, setShare] = useState(false);
+
   return (
     <Box
       display={["none", "none", "none", "block"]}
@@ -137,6 +200,35 @@ const ProfileHeaderLarge = ({
       overflow={"hidden"}
       mb={"10"}
     >
+      <Modal isOpen={share} onClose={() => setShare(!share)} size="5xl">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton onClick={() => setShare(!share)} />
+          <ModalBody>
+            <SimpleGrid
+              columns={4}
+              gap={2}
+              w="full"
+              justifyItems={"space-between"}
+            >
+              <FacebookShareButton url={shareUrl.toString()}>
+                <FacebookIcon size={32} round={true} />
+              </FacebookShareButton>
+
+              <TwitterShareButton url={shareUrl.toString()}>
+                <TwitterIcon size={32} round={true} />
+              </TwitterShareButton>
+              <WhatsappShareButton url={shareUrl.toString()}>
+                <WhatsappIcon size={32} round={true} />
+              </WhatsappShareButton>
+              <RedditShareButton url={shareUrl.toString()}>
+                <RedditIcon size={32} round={true} />
+              </RedditShareButton>
+            </SimpleGrid>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
       <AspectRatio
         position={"absolute"}
         top={0}
@@ -187,9 +279,15 @@ const ProfileHeaderLarge = ({
           gap={2}
           alignItems={"center"}
         >
-          <FullScreenImage imageUrl={Dlinks} />
+          <Image src={Dlinks} alt="Image" maxW="100%" maxH="100%" />
 
-          <Icon as={FaShareAlt} fill={"white"} h={8} w={8} />
+          <Icon
+            as={FaShareAlt}
+            fill={"white"}
+            h={8}
+            w={8}
+            onClick={() => setShare(!share)}
+          />
         </GridItem>
         <GridItem display={"flex"} flexDirection={"column"} px={[0, 5, 5, 10]}>
           <FullScreenImage
@@ -197,13 +295,19 @@ const ProfileHeaderLarge = ({
               mb: 5,
               maxH: "60%",
             }}
-            imageUrl={passport}
+            imageUrl={
+              profile?.activeOnWeb3PassportofficialNFTImageUrl?.length! > 0
+                ? (profile?.activeOnWeb3PassportofficialNFTImageUrl as string)
+                : (passport as string)
+            }
             imageStyles={{ objectFit: "cover", border: "2px solid white" }}
           />
           <SimpleGrid columns={2}>
             <Text color={"white"}>Citizen:</Text>
-            <Text color={"white"}>{profile?.assignedUserName}</Text>
-            <Text color={"white"}>Passport Ref: </Text>
+            <Text color={"white"}>{profile?.registeredDisplayName}</Text>
+            <Text color={"white"}>
+              Passport Ref:{profile?.activeOnWeb3PassportnftNumber}{" "}
+            </Text>
             <Text as={"b"} color={"white"}>
               {profile?.activeOnWeb3PassportnftNumber}
             </Text>
@@ -215,7 +319,7 @@ const ProfileHeaderLarge = ({
         </GridItem>
         <GridItem display={"flex"} flexDirection={"column"}>
           <FullScreenImage
-            imageUrl={user}
+            imageUrl={profile?.uploadedProfileImage ?? user}
             containerStyles={{
               maxH: "60%",
             }}
@@ -228,7 +332,7 @@ const ProfileHeaderLarge = ({
 };
 
 const ProfileHeader = () => {
-  const [opacity, setOpacity] = useState(1);
+  const [opacity, setOpacity] = useState(0.5);
   const { profile } = useContext(profileContext);
 
   const increaseOpacityByStep = () => {

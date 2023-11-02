@@ -1,4 +1,4 @@
-import { Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Text, VStack } from "@chakra-ui/react";
 import { profileContext } from "../../../../context/ProfileContext";
 import { useContext } from "react";
 
@@ -15,10 +15,10 @@ const SteamupInterests = () => {
         </Text>
       </Heading>
       {interestsArray?.map((interest) => (
-        <>
+        <Box mb={6}>
           <Text as={"b"}>{interest[0]}</Text>
           <Text>{interest[1]}</Text>
-        </>
+        </Box>
       ))}
     </VStack>
   );

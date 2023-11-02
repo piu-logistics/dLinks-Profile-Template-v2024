@@ -48,22 +48,22 @@ const Web3AssetsWallets = () => {
         {" "}
         <Text>Blockchain:</Text>
         <Text>Wallet Address:</Text>
-        <Text placeSelf={["center", "center", "center", "start"]}>
-          QR Code:
-        </Text>
+        <Text placeSelf={["center", "center", "center", "end"]}>QR Code:</Text>
       </SimpleGrid>
 
       {textContent.map((item, index) => (
         <SimpleGrid
           columns={[1, 1, 1, 3]}
-          spacingY={[5, 5, 10]}
+          spacingY={[5, 5, 20]}
           key={index}
           w={"100%"}
           alignItems={"center"}
         >
           <Text>{item.blockchain}</Text>
           <Text>{item.address}</Text>
-          <Box>{item.qrCode}</Box>
+          <Box placeSelf={["center", "center", "center", "end"]}>
+            {item.qrCode}
+          </Box>
           <hr />
         </SimpleGrid>
       ))}

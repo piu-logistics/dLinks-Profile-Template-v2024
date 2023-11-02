@@ -1,4 +1,4 @@
-import { Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import banner from "@/assets/images/banner.jpg";
 const insights = [
   {
@@ -59,7 +59,7 @@ const MoreInsights = () => {
         id="embed_player"
         width="100%"
         height="400px"
-        src="https://ulearn.airtime.pro/embed/player?stream=auto&skin=2"
+        src="https://onweb3.airtime.pro/embed/player?stream=auto&skin=2"
       ></iframe>
 
       <Text fontWeight={"bold"} textAlign={"right"}>
@@ -89,6 +89,15 @@ const MoreInsights = () => {
           {item.description}
         </VStack>
       ))}
+      <Heading color={"black"}>AlkebulanMeta Videos</Heading>
+
+      <Box mx={"auto"} minW={"80%"}>
+        <iframe
+          src="https://vimeo.com/showcase/10762314/embed"
+          width="100%"
+          height="400px"
+        ></iframe>
+      </Box>
     </Flex>
   );
 };
