@@ -280,7 +280,7 @@ const MoreInsights = () => {
         <iframe
           src="https://vimeo.com/showcase/10762314/embed"
           width="100%"
-          height="400px"
+          height="600px"
         ></iframe>
       </Box>
     </Flex>
