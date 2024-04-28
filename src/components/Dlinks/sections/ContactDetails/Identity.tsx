@@ -5,7 +5,7 @@ import { profileContext } from "../../../../context/ProfileContext";
 const Identity = () => {
   const { profile } = useContext(profileContext);
   const { registeredDisplayName, preferredUsername, hTLDPreference } = profile;
-  const chatName = `@${preferredUsername}:alkebulanmeta.network`;
+  const chatName = `@${preferredUsername}:alkebulanmeta.net`;
   const dLinksProfileURL = `https://${preferredUsername}.${hTLDPreference}.ow3.info`;
 
   const textContent = [
